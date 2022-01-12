@@ -1,6 +1,7 @@
 from django.db.models.fields import UUIDField
 from django.http.response import HttpResponse
 from django.shortcuts import render, HttpResponse
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -13,10 +14,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-class DoctorViewSet(ModelViewSet):
+class DoctorViewSet(APIView):
     queryset = DoctorDetails.objects.all()
     serializer_class = DoctorDetailsSerializer
-        
+
     @action(methods=['get'], detail=True)
     def me(self, request, *args, **kwargs):
         target_user = uuid.UUID(kwargs['doctorid'])
