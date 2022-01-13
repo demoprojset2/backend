@@ -1,11 +1,8 @@
 from django.db.models import fields
 from rest_framework import serializers
 from .models import *
+from users.serializers import ProfileSerializer
 
-class DoctorDetailsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DoctorDetails
-        fields = '__all__'
 
 class PatientDetailsSerializer(serializers.ModelSerializer):
     class Meta:
