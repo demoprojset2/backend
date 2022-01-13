@@ -1,4 +1,3 @@
-from django.db.models import fields
 from rest_framework import serializers
 from .models import *
 
@@ -6,7 +5,7 @@ from .models import *
 class DoctorDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DoctorDetails
-        fields = '__all__'
+        fields = ['id', 'doctor_name', 'speciality']
 
 
 class SimpleDoctorSerializer(serializers.ModelSerializer):
@@ -16,10 +15,9 @@ class SimpleDoctorSerializer(serializers.ModelSerializer):
 
 
 class PatientDetailsSerializer(serializers.ModelSerializer):
-    doctor = serializers.UUIDField(read_only=True)
     class Meta:
         model = PatientDetails
-        fields = ['id', 'name', 'email_id', 'address', 'phone_number', 'doctor']
+        fields = ['name', 'email_id', 'dob', 'gender', 'address', 'phone_number', 'doctor']
 
 
 class SimpleProblemPatient(serializers.ModelSerializer):
@@ -35,6 +33,14 @@ class PatientDeshboardSerializer(serializers.ModelSerializer):
     class Meta:
         model = PatientDetails
         fields = ['doctor', 'problem_patient']
+
+
+class DoctorDeshboardSerializer(serializers.ModelSerializer):
+    problem_patient = SimpleProblemPatient(many=True)
+
+    class Meta:
+        model = PatientDetails
+        fields = ['id', 'name', 'problem_patient']
 
 
 class AllergySerializer(serializers.ModelSerializer):

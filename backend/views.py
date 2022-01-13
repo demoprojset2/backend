@@ -1,33 +1,31 @@
-from django.db.models.fields import UUIDField
-from django.http.response import HttpResponse
-from django.shortcuts import render, HttpResponse
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from django.views.generic import ListView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin
-# from .serializers import DoctorDetailSerializer
+from rest_framework.decorators import action, api_view
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin, DestroyModelMixin
+from rest_framework import status, generics
 from .models import DoctorDetails, PatientDetails
-import uuid
-from .serializers import DoctorDetailsSerializer, PatientDetailsSerializer, PatientDeshboardSerializer
-from rest_framework import status
+from .serializers import DoctorDetailsSerializer, PatientDetailsSerializer, PatientDeshboardSerializer, \
+    DoctorDeshboardSerializer
+from .utils import Util
 
 
-class DoctorViewSet(APIView):
-    queryset = DoctorDetails.objects.all()
-    serializer_class = DoctorDetailsSerializer
+class SearchPatient(APIView):
+    def get(self, request, doctorid, search_term):
+        doctor = DoctorDetails.objects.get(pk=doctorid)
+        patient = PatientDetails.objects.filter(doctor=doctor)
+        patient = PatientDetails.objects.filter(doctor=doctor).filter(name__icontains=search_term)
+        serializer = DoctorDeshboardSerializer(patient, many=True)
+        return Response(serializer.data)
 
-    @action(methods=['get'], detail=True)
-    def me(self, request, *args, **kwargs):
-        target_user = uuid.UUID(kwargs['doctorid'])
-        try:
-            doctor = DoctorDetails.objects.get(id=target_user)
-            serializer = DoctorDetailsSerializer(doctor)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class Details(APIView):
+
+    def get(self, request, doctorid):
+        doctor = DoctorDetails.objects.get(pk=doctorid)
+        patient = PatientDetails.objects.filter(doctor=doctor)
+        serializer = DoctorDeshboardSerializer(patient, many=True)
+        return Response(serializer.data)
 
 
 class PatientViewSet(ModelViewSet):
@@ -36,12 +34,18 @@ class PatientViewSet(ModelViewSet):
 
     @action(methods=['post'], detail=True)
     def addpatient(self, request, *args, **kwargs):
-        target_user = uuid.UUID(kwargs['doctorid'])
         serializer = PatientDetailsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        user_data = serializer.data
+        user_id = PatientDetails.objects.filter(email_id=user_data['email_id'])
+        email_body = 'Hii use the below credential for login' + " " + str(user_id) + " " + 'use only for personal use '
+        data = {
+            'email_body': email_body,
+            'email_subject': 'Login credential'
+        }
+        Util.sent_email(data, user_data['email_id'])
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class PatientDashboardViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):

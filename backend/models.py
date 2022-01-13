@@ -32,12 +32,12 @@ class PatientDetails(models.Model):
     email_id = models.EmailField(unique=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICE, default=GENDER_MALE)
     address = models.CharField(max_length=255)
-    dob = models.DateTimeField()
+    dob = models.DateField()
     phone_number = PhoneNumberField()
-    doctor = models.ForeignKey(DoctorDetails, blank=True, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(DoctorDetails, blank=True, on_delete=models.CASCADE, related_name='doctor')
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 
 class VitalDetails(models.Model):
