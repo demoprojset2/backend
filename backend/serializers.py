@@ -41,3 +41,23 @@ class SocialHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SocialHistory
         fields = '__all__'
+
+class SimpleProblemPatient(serializers.ModelSerializer):
+    class Meta:
+        model = ProblemDetails
+        fields = ['id', 'problem_name', 'start_date', 'end_date']
+
+class SimpleDoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DoctorDetails
+        fields = ['id', 'doctor_name', 'speciality']
+
+class PatientDeshboardSerializer(serializers.ModelSerializer):
+    doctor = SimpleDoctorSerializer()
+    problem_patient = SimpleProblemPatient(many=True)
+
+    class Meta:
+        model = PatientDetails
+        fields = ['doctor', 'problem_patient']
+
+
