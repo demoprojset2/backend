@@ -14,6 +14,9 @@ class DoctorDetails(models.Model):
     phone_number = PhoneNumberField()
     doctor_password = models.CharField(max_length=30)
 
+    def __str__(self):
+        return f'{self.doctor_name}'
+
 
 class PatientDetails(models.Model):
     GENDER_MALE = "M"
@@ -83,7 +86,7 @@ class Medication(models.Model):
 
 class Dosage(models.Model):
     DOSETIMECHOICE = [
-        ("Per Day", "1/d"), ("Per Half Day", "1/h"), ("Per Quater Hour", "1/Q")
+        ("Per Day", "1/d"), ("Per Half Day", "1/h"), ("Per Quarter Hour", "1/Q")
     ]
 
     medication = models.OneToOneField(Medication, on_delete=models.CASCADE, related_name='med')
