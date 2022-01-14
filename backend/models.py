@@ -85,7 +85,6 @@ class Dosage(models.Model):
     DOSETIMECHOICE = [
         ("Per Day", "1/d"), ("Per Half Day", "1/h"), ("Per Quater Hour", "1/Q")
     ]
-
     medication = models.OneToOneField(Medication, on_delete=models.CASCADE, related_name='med')
     dose_amount = models.PositiveSmallIntegerField()
     dose_timing = models.CharField(max_length=20, choices=DOSETIMECHOICE)
