@@ -106,3 +106,5 @@ class SocialHistory(models.Model):
     tobacco = models.CharField(choices=SMOKE_STATUS, default="Never Smoked", max_length=100)
     alcohol = models.CharField(choices=DRINK_STATUS, default="Current Drinker", max_length=100)
     patient = models.OneToOneField(PatientDetails, on_delete=models.CASCADE, related_name='patient_smoker')
+
+

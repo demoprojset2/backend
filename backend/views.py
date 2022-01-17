@@ -326,7 +326,6 @@ class PatientViewSet(APIView):
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
 
-
         patient = None
         try:
             patient = PatientDetails.objects.get(id=patientid)
