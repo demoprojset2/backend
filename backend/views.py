@@ -496,21 +496,24 @@ class SocialViewSet(APIView):
         except:
             content = {'Patient does not exist'}
             return Response(content, status=status.HTTP_404_NOT_FOUND)
-
+        print("420", patient)
         try:
             socialdetails = SocialHistory.objects.get(patient=patient)
             data = request.data
             data['patient'] = patientid
             serializer = SocialHistorySerializer(socialdetails, data=data)
-            # print(vitaldetails)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except:
+            print("511", patientid)
             data = request.data
+            print("serialize_data", request.data)
+            request.data._mutable = True
             data['patient'] = patientid
-            print(data)
+            request.data._mutable = False
+            print("non_serialize_data", data)
             serializer = SocialHistorySerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
