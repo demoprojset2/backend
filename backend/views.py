@@ -1,7 +1,6 @@
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
-from rest_framework import generics, permissions
 from rest_framework.decorators import action
 from rest_framework.views import APIView
 from accounts.models import Profile
@@ -687,9 +686,8 @@ class PatientCommentsViewSet(APIView):
 
     def post(self, request, patientid):
         patientid = uuid.UUID(patientid)
-        patient = None
         try:
-            patient = PatientDetails.objects.get(id=patientid)
+            PatientDetails.objects.get(id=patientid)
         except:
             content = {'Patient does not exist'}
             return Response(content, status=status.HTTP_404_NOT_FOUND)
@@ -709,7 +707,6 @@ class PatientMedicationDetailsViewSet(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, patientid):
-        serializer_class = MedicationSerializer
         patientid = uuid.UUID(patientid)
         try:
             patient = PatientDetails.objects.get(id=patientid)
@@ -725,7 +722,6 @@ class PatientSocialViewSet(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, patientid):
-        serializer_class = SocialHistorySerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
@@ -746,7 +742,6 @@ class PatientAllergyDetailsViewSet(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, patientid):
-        serializer_class = AllergySerializer
         patientid = uuid.UUID(patientid)
         patient = None
 
@@ -782,7 +777,6 @@ class PatientProblemDetailsViewSet(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, patientid):
-        serializer_class = ProblemDetailsSerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
