@@ -41,9 +41,9 @@ def getToken(request, doctorid=None, patientid=None):
             if userid == doctor:
                 return token
             return None
-    except jwt.ExpiredSignatureError as ex:
+    except jwt.ExpiredSignatureError:
         raise exceptions.AuthenticationFailed("Token is expired,login again")
-    except jwt.DecodeError as ex:
+    except jwt.DecodeError:
         raise exceptions.AuthenticationFailed("Token is invalid")
 
     except Profile.DoesNotExist:
