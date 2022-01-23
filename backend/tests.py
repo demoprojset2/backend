@@ -4,7 +4,6 @@ from .models import PatientDetails, VitalDetails, Allergy, Medication, Dosage, P
     PatientComments
 
 
-# Create your tests here.
 class PatientTestCase(TestCase):
     def test_field_doctor_creation(self):
         self.user_as_doctor = User.objects.create(email='sharmasonu04359491@gmail.com')
@@ -45,8 +44,8 @@ class PatientTestCase(TestCase):
     def test_field_Medication_creation(self):
         self.user_as_doctor = User.objects.create(email='sharmasonu04359491@gmail.com')
         self.doctor = Profile.objects.create(user=self.user_as_doctor, speciality="Ortho", gender="M")
-        PatientDetails.objects.create(name="Sonu", email_id="sonuraj1926@gmail.com", gender="M",
-                                                address="Sectro 49 Noida", dob="1999-09-06",
+        patient = PatientDetails.objects.create(name="Sonu", email_id="sonuraj1926@gmail.com", gender="M",
+                                                address="Sector-49", dob="1999-09-06",
                                                 phone_number="+918527879473", doctor=self.doctor)
         medication = Medication(medication_name="Dolo", medication_manufacturer="Apex", expire="2021-01-01", amount=104)
         self.assertTrue(isinstance(medication, Medication))
@@ -56,8 +55,8 @@ class PatientTestCase(TestCase):
         self.user_as_doctor = User.objects.create(email='sharmasonu04359491@gmail.com')
         self.doctor = Profile.objects.create(user=self.user_as_doctor, speciality="Ortho", gender="M")
         PatientDetails.objects.create(name="Sonu", email_id="sonuraj1926@gmail.com", gender="M",
-                                                address="Sectro 49 Noida", dob="1999-09-06",
-                                                phone_number="+918527879473", doctor=self.doctor)
+                                      address="Sectro 49 Noida", dob="1999-09-06",
+                                      phone_number="+918527879473", doctor=self.doctor)
         medication = Medication(medication_name="Dolo", medication_manufacturer="Apex", expire="2021-01-01", amount=104)
         dosage = Dosage(medication=medication, dose_amount=3, dose_timing="Per Day",
                         dose_description="Please take Caution")

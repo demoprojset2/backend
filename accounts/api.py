@@ -14,6 +14,7 @@ from .serializers import (
 )
 from .models import Profile, User
 
+
 class GetUserAPI(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = GetUserSerializer
