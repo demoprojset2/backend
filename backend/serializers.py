@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db.models import fields
 from rest_framework import serializers
 from .models import *
@@ -58,6 +59,14 @@ class ProblemDetailsSerializer(serializers.ModelSerializer):
 class SocialHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SocialHistory
+        fields = '__all__'
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    # id = serializers.UUIDField(read_only=True)
+
+    class Meta:
+        model = PatientComments
         fields = '__all__'
 
 
