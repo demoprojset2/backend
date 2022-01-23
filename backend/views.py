@@ -56,7 +56,6 @@ from accounts.models import User
 class GetAllPatients(APIView):
     def get(self, request, doctorid):
 
-        serializer_class = PatientDetailsSerializer
         try:
             patients = PatientDetails.objects.filter(doctor=doctorid)
             token = getToken(request, doctorid, None)
@@ -73,9 +72,8 @@ class IndAllergyViewSet(APIView):
     def delete(self, request, patientid, id):
         patientid = uuid.UUID(patientid)
         id = int(id)
-        patient = None
         try:
-            patient = PatientDetails.objects.get(id=patientid)
+            PatientDetails.objects.get(id=patientid)
         except Exception:
             content = {'Patient does not exist'}
             return Response(content, status=status.HTTP_404_NOT_FOUND)
@@ -97,9 +95,8 @@ class IndAllergyViewSet(APIView):
         patientid = uuid.UUID(patientid)
         print("100 line number")
         id = int(id)
-        patient = None
         try:
-            patient = PatientDetails.objects.get(id=patientid)
+            PatientDetails.objects.get(id=patientid)
         except Exception:
             content = {'Patient does not exist'}
             return Response(content, status=status.HTTP_404_NOT_FOUND)
@@ -148,9 +145,8 @@ class AllergyDetailsViewSet(APIView):
     def post(self, request, patientid):
         serializer_class = AllergySerializer
         patientid = uuid.UUID(patientid)
-        patient = None
         try:
-            patient = PatientDetails.objects.get(id=patientid)
+            PatientDetails.objects.get(id=patientid)
         except Exception:
             content = {'Patient does not exist'}
             return Response(content, status=status.HTTP_404_NOT_FOUND)
@@ -172,7 +168,6 @@ class AllergyDetailsViewSet(APIView):
 
 class VitalDetailsViewSet(APIView):
     def get(self, request, patientid):
-        serializer_class = VitalDetailsSerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
@@ -194,7 +189,6 @@ class VitalDetailsViewSet(APIView):
             return Response(content, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, patientid):
-        serializer_class = VitalDetailsSerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
@@ -311,7 +305,6 @@ class PatientAddViewSet(ModelViewSet):
 
 class PatientViewSet(APIView):
     def get(self, request, patientid):
-        serializer_class = PatientDetailsSerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
@@ -322,7 +315,6 @@ class PatientViewSet(APIView):
             return Response(content, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request, patientid):
-        serializer_class = PatientDetailsSerializer
         patientid = uuid.UUID(patientid)
 
         token = getToken(request, None, patientid)
@@ -372,7 +364,7 @@ class MedicationViewSet(APIView):
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            patient = PatientDetails.objects.get(id=patientid)
+            PatientDetails.objects.get(id=patientid)
             meds = Medication.objects.get(id=medid)
             meds.delete()
             return Response(status=status.HTTP_200_OK)
@@ -383,7 +375,6 @@ class MedicationViewSet(APIView):
 
 class MedicationListViewSet(APIView):
     def get(self, request, patientid):
-        serializer_class = MedicationSerializer
         patientid = uuid.UUID(patientid)
 
         token = getToken(request, None, patientid)
@@ -446,7 +437,6 @@ class DosageViewSet(ModelViewSet):
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception:
-            content = {'No medication found'}
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def adddose(self, request, *args, **kwargs):
@@ -549,7 +539,6 @@ class SocialViewSet(APIView):
             content = {'Invalid token'}
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer_class = SocialHistorySerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
@@ -572,7 +561,6 @@ class SocialViewSet(APIView):
             content = {'Invalid token'}
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer_class = SocialHistorySerializer
         patientid = uuid.UUID(patientid)
         patient = None
         try:
