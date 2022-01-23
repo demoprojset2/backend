@@ -37,7 +37,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "052250720528.dkr.ecr.us-east-1.amazonaws.com/online-ehr:latest",
+      "image": "052250720528.dkr.ecr.us-east-1.amazonaws.com/online-ehr:9ff8b83358a9ea9b3599248815735c9fe960bfbe",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -64,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:052250720528:task-definition/online-ehrTask:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:052250720528:task-definition/online-ehrTask:12",
   "family": "online-ehrTask",
   "requiresAttributes": [
     {
@@ -126,7 +126,7 @@
     "cpuArchitecture": null
   },
   "cpu": "1024",
-  "revision": 1,
+  "revision": 12,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
