@@ -80,7 +80,7 @@ class PatientTestCase(TestCase):
                                                 phone_number="+918527879473", doctor=self.doctor)
         social_history = SocialHistory(tobacco="Never Smoked", alcohol="Current drinker", patient=patient)
         self.assertTrue(isinstance(social_history, SocialHistory))
-        self.assertEqual(str(social_history), 'Soun')
+        self.assertEqual(str(social_history), 'Sonu')
 
     def test_field_PatientComments_creation(self):
         self.user_as_doctor = User.objects.create(email='sharmasonu04359491@gmail.com')
