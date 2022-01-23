@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/onlineEHRTask",
+          "awslogs-group": "/ecs/OnlineEHRTASK",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -54,7 +54,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "onlineEHRcointainer"
+      "name": "OnlineEHRCointainer"
     }
   ],
   "placementConstraints": [],
@@ -64,8 +64,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:052250720528:task-definition/onlineEHRTask:1",
-  "family": "onlineEHRTask",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:052250720528:task-definition/OnlineEHRTASK:1",
+  "family": "OnlineEHRTASK",
   "requiresAttributes": [
     {
       "targetId": null,
