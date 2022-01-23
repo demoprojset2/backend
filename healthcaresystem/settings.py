@@ -26,11 +26,12 @@ SECRET_KEY = 'django-insecure-8q#n42&ao3s$x##ieky6g7vc)@czxmh1+l+drgpjf9bh&pmwd5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'backend.apps.BackendConfig',
-    'accounts'
+
 ]
 
 REST_FRAMEWORK = {
@@ -117,13 +118,20 @@ WSGI_APPLICATION = 'healthcaresystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'health',
+#         'HOST': 'localhost',
+#         'USER': 'postgres',
+#         'PASSWORD': 12345
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'health',
-        'HOST': 'localhost',
-        'USER': 'postgres',
-        'PASSWORD': 12345
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

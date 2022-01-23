@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+
+  web:
+    restart: always
+    container_name: code
+    command: ./docker-entrypoint.sh
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000

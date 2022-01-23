@@ -1,5 +1,3 @@
-import imp
-from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -35,6 +33,7 @@ class GetUserAPI(generics.RetrieveAPIView):
 
 class LoginAPI(generics.GenericAPIView):
     serializer_class = LoginSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
