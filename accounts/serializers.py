@@ -4,10 +4,6 @@ from django.contrib.auth import authenticate
 
 from .models import Profile, User
 
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
 
 # ProfileSerializer
 class ProfileSerializer(serializers.ModelSerializer):
@@ -25,11 +21,8 @@ class GetUserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile']
 
     def get_profile(self, obj):
-        try:
-            profile = obj.profile
-            return ProfileSerializer(profile).data
-        except:
-            return None
+        profile = obj.profile
+        return ProfileSerializer(profile).data
 
 
 class LoginSerializer(serializers.Serializer):
