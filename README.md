@@ -79,7 +79,7 @@ PostgreSQL
 3. Django UnitTest
 
 ## DB Diagram
-![alt text](https://github.com/demoprojset2/backend/blob/main/EHR_dbdiagram.png?raw=true)
+![alt text](https://github.com/demoprojset2/backend/blob/main/Ehr_dbdiagram.png?raw=true)
 
 ## Application Workflow
 ![alt text](https://github.com/demoprojset2/backend/blob/main/EHR_workflow.jpg?raw=true)
