@@ -1,6 +1,7 @@
 # Online-EHR Records
 ![example workflow](https://github.com/shruti-17/OpenEHR-Project/actions/workflows/main.yml/badge.svg)
 ![example workflow](https://github.com/demoprojset2/backend/actions/workflows/CI-CD.yml/badge.svg)
+![example workflow](https://github.com/demoprojset2/backend/actions/workflows/CODE_CHECKS.yml/badge.svg)
 
 ### Project Description :
 - The health care system refers to the institutions, people and resources involved in delivering health care to individuals.
@@ -77,5 +78,8 @@ PostgreSQL
 2. Postman 
 3. Django UnitTest
 
+## Application Workflow
+![alt text](https://github.com/demoprojset2/backend/blob/main/EHR_workflow.jpg?raw=true)
 
-
+## Deployment Workflow
+![alt text](https://miro.medium.com/max/700/1*Ur9w7sOGoNAc9K6u4uKatQ.png)
