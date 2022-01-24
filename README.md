@@ -1,3 +1,81 @@
-# backend
+# Online-EHR Records
+![example workflow](https://github.com/shruti-17/OpenEHR-Project/actions/workflows/main.yml/badge.svg)
 
-![Models Which desiged](data:image/png;base64,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)
+### Project Description :
+- The health care system refers to the institutions, people and resources involved in delivering health care to individuals.
+- The objective of the healthcare system is to make a record of information that will be available instantly and securely to a doctor or patient or health care     individuals
+
+
+### Scope
+
+- Users of this system have specific roles defined with specific jobs to be executed.
+- Doctor as a user can deal with the handling of record of patients and patient as a user can access their respective details
+- In this system, health information can be created and managed by authorized providers or doctors in a digital format capable of being shared with other care       taker’s across.
+
+
+### Goal:
+- Empower patients to be involved in their care with our patient portal. Our portal is integrated with the EHR and provides the patient with access to their         longitudinal record.
+- Better health care by improving all aspects of patient care, including safety, effectiveness, patient-centeredness, communication,timeliness, efficiency, and       equity.
+
+### Goal:
+- Target Audience 
+ 1. Doctors
+ 2. Patients
+ 3. Healthcare individuals
+
+### Install and Run code 
+
+1. Create database `django` project in current directory
+`django-admin startproject <project_name> .`
+
+3. Activate environment:
+`pipenv shell`
+
+4. Install the dependancies:
+`pip install -r requirements.txt`
+
+ 
+6. Run the code `python manage.py runserver`
+
+7. Clean up `deactivate`
+
+### Run locally with docker
+
+Use docker-compose<br>
+`docker-compose up --build`
+
+### Test Code:
+Django Unit-Test:<br>
+`python manage.py test`
+
+### Migrate DB
+1. After changes in the models.py / DB, run the command:<br>
+`python manage.py makemigrations`
+2. To sync changes run: <br>
+`python manage.py migrate`
+
+
+## Tech stack
+<strong>EAPR</strong> uses
+
+<strong>Frontend</strong>:
+1. HTML, CSS, JS
+2. React
+3. React Router
+4. Bootstrap
+
+<strong>Backend</strong>:
+1. Django
+2. Rest-frame Work
+3. Auth using JWT
+
+<strong>Database:</strong>
+PostgreSQL
+
+<strong>Testing:</strong>
+1. Selenium
+2. Postman 
+3. Django UnitTest
+
+
+
