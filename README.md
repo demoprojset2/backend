@@ -17,8 +17,7 @@
 - Empower patients to be involved in their care with our patient portal. Our portal is integrated with the EHR and provides the patient with access to their         longitudinal record.
 - Better health care by improving all aspects of patient care, including safety, effectiveness, patient-centeredness, communication,timeliness, efficiency, and       equity.
 
-### Goal:
-- Target Audience 
+### Target Audience: 
  1. Doctors
  2. Patients
  3. Healthcare individuals
