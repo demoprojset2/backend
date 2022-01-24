@@ -1,6 +1,6 @@
 # Online-EHR Records
 ![example workflow](https://github.com/shruti-17/OpenEHR-Project/actions/workflows/main.yml/badge.svg)
-![example workflow](https://github.com/demoprojset2/backend/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/demoprojset2/backend/actions/workflows/CI-CD.yml/badge.svg)
 
 ### Project Description :
 - The health care system refers to the institutions, people and resources involved in delivering health care to individuals.
